@@ -6,10 +6,8 @@ USE alx_book_store;
 -- Create the authors table
 CREATE TABLE IF NOT EXISTS authors (
     author_id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    birth_date DATE,
-    nationality VARCHAR(50)
+    author_name VARCHAR(50) NOT NULL,
+  
 );
 
 -- Create the books table
@@ -35,7 +33,7 @@ CREATE TABLE IF NOT EXISTS customers (
 CREATE TABLE IF NOT EXISTS orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
     customer_id INT,
-    order_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    order_date DATE,
     
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE
 );
