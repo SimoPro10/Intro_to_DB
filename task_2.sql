@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS Customers (
 -- Create the orders table
 CREATE TABLE IF NOT EXISTS Orders (
     order_id INT AUTO_INCREMENT PRIMARY KEY,
-    customer_id (Foreign Key referencing Customers table),
+    customer_id (FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
     order_date DATE,
     
     FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE
