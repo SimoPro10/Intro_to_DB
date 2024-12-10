@@ -1,25 +1,32 @@
 import mysql.connector
-from mysql.connector import Error
+from mysql.connector
+
+from dotenv import load_dotenv
+import os
+
+
+load_dotenv()
 
 def create_database():
     try:
-        # Establish a connection to the MySQL server
+        mysql_root_password = os.getenv('MY_SQL_ROOT_PASSWD')
         connection = mysql.connector.connect(
-            host='localhost:3306', 
-            user='root',  
-            password='simo@51344/c'
+            host='localhost',
+            user='root',
+            password=mysql_root_password
+        )
         
         if connection.is_connected():
             cursor = connection.cursor()
-            # Attempt to create the database
+            
             cursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
-            print("Database 'alx_book_store' created successfully!")
-
-    except Error as e:
-        print(f"Error: {e}")
+            print("Database 'alx_book_store' created successfully")
+            
+    except mysql.connector.Error as e:
+        print(f"The error '{e}' occurred")
     
     finally:
-        # Ensure the connection is closed
+        
         if (connection.is_connected()):
             cursor.close()
             connection.close()
@@ -27,3 +34,4 @@ def create_database():
 
 if __name__ == "__main__":
     create_database()
+    
